@@ -1,0 +1,27 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <form action="/" method="get">
+                                <label for="category-list">Фильтр по категории</label>
+                                <select class="selectpicker" id="category-list" name="category_id" required>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" class="btn btn-primary btn-large" value="поиск">
+                            </form>
+                        </div>
+                    </div>
+                    {% include "blocks/news.html.twig" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

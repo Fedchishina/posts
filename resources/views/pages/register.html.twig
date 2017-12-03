@@ -1,0 +1,55 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Регистрация пользователя</div>
+                    <div class="panel-body">
+                        <form method="POST" action="/register" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 control-label">Имя</label>
+                                <div class="col-md-6">
+                                    <input id="name" type="text" name="name" value="{% if inputs['name'] is not empty %} {{ inputs['name'] }}{% endif %}" class="form-control" required>
+                                    {% if errors['name'] is not empty %}
+                                        <span class="help-block">
+                                            <strong>{{ errors['name'][0] }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-md-4 control-label">E-Mail</label>
+                                <div class="col-md-6">
+                                    <input id="email" type="email" name="email" value="{% if inputs['email'] is not empty %} {{ inputs['email'] }}{% endif %}" class="form-control" required>
+                                    {% if errors['email'] is not empty %}
+                                        <span class="help-block">
+                                            <strong>{{ errors['email'][0] }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-4 control-label">Пароль</label>
+                                <div class="col-md-6">
+                                    <input id="password" type="password" name="password" class="form-control" required>
+                                    {% if errors['password'] is not empty %}
+                                        <span class="help-block">
+                                            <strong>{{ errors['password'][0] }}</strong>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">Регистрация</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

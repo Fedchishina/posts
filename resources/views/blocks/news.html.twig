@@ -1,0 +1,40 @@
+<div class="col-md-12">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <h2>{{ post.name }}</h2>
+                <p>{{ post.description }}</p>
+                <p>category_id =  {{ post.category_id }}</p>
+                <p>
+                    <a class="btn btn-primary btn-large" href="#">Нравится</a>
+                    <a class="btn btn-primary btn-large" href="#">Подробнее</a>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <ul class="pagination">
+        <li>
+            <a href="#">Prev</a>
+        </li>
+        <li>
+            <a href="#">1</a>
+        </li>
+        <li>
+            <a href="#">2</a>
+        </li>
+        <li>
+            <a href="#">3</a>
+        </li>
+        <li>
+            <a href="#">4</a>
+        </li>
+        <li>
+            <a href="#">5</a>
+        </li>
+        <li>
+            <a href="#">Next</a>
+        </li>
+    </ul>
+</div>
