@@ -4,5 +4,6 @@ return [
     'register' => 'users/register', //register of user
     'logout' => 'users/logout', //logout of user
     'posts/add' => 'posts/add', //add post
+    'posts/show' => 'posts/show', //add post
     '' => 'posts/index', //main page
 ];

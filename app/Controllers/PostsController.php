@@ -51,4 +51,14 @@ class PostsController extends Controller
         }
 
     }
+
+    public function actionShow()
+    {
+        if(isset($_GET['post_id'])){
+            $post = Post::where('id', $_GET['post_id'])->first();
+            if($post) {
+                $this->render('pages/posts/index', compact('post'));
+            }
+        }
+    }
 }
