@@ -28,4 +28,9 @@ class Controller
 
         return $ar;
     }
+
+    protected function getSkip($current)
+    {
+        return ($current - 1) * $this->countTake;
+    }
 }

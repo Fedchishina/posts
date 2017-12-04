@@ -5,9 +5,8 @@
             <div class="jumbotron">
                 <h2>{{ post.name }}</h2>
                 <p>{{ post.description }}</p>
-                <p>category_id =  {{ post.category_id }}</p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">
+                    <a class="btn {% if _session.user_id is empty %} disabled {% else %} btn-primary btn-large {% endif %}" href="#">
                         <span><i class="fa fa-heart-o"></i> нравится 1</span>
                     </a>
                     <a class="btn btn-primary btn-large" href="/posts/show?post_id={{ post.id }}">

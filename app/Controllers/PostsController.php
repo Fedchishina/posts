@@ -5,8 +5,6 @@ use App\Models\Post;
 
 class PostsController extends Controller
 {
-
-
     public function actionIndex()
     {
         $allCount = isset($_GET['category_id']) ? Post::where('category_id', $_GET['category_id'])->count() : Post::count();
@@ -20,11 +18,6 @@ class PostsController extends Controller
         $posts = $posts->orderBy('created_at', 'desc')->get();
         $pages = $this->pages_array($allCount);
         $this->render('index', compact('categories', 'posts', 'pages'));
-    }
-
-    private function getSkip($current)
-    {
-        return ($current - 1) * $this->countTake;
     }
 
     public function actionAdd()
