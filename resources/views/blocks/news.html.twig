@@ -7,34 +7,26 @@
                 <p>{{ post.description }}</p>
                 <p>category_id =  {{ post.category_id }}</p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">Нравится</a>
-                    <a class="btn btn-primary btn-large" href="/posts/show?post_id={{ post.id }}">Подробнее</a>
+                    <a class="btn btn-primary btn-large" href="#">
+                        <span><i class="fa fa-heart-o"></i> нравится 1</span>
+                    </a>
+                    <a class="btn btn-primary btn-large" href="/posts/show?post_id={{ post.id }}">
+                        <span><i class="fa fa-eye"></i> подробнее</span>
+                    </a>
                 </p>
             </div>
         </div>
         {% endfor %}
     </div>
-    <ul class="pagination">
-        <li>
-            <a href="#">Prev</a>
-        </li>
-        <li>
-            <a href="#">1</a>
-        </li>
-        <li>
-            <a href="#">2</a>
-        </li>
-        <li>
-            <a href="#">3</a>
-        </li>
-        <li>
-            <a href="#">4</a>
-        </li>
-        <li>
-            <a href="#">5</a>
-        </li>
-        <li>
-            <a href="#">Next</a>
-        </li>
-    </ul>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% for i in pages %}
+                <li {% if _get.page == i %} class="btn disabled" {% endif %}>
+                    <a href="/?page={{ i }}{% if _get.category_id is not empty %}&category_id={{_get.category_id}}{% endif %}">
+                        {{ i }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
 </div>

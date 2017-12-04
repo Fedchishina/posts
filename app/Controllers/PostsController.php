@@ -5,18 +5,21 @@ use App\Models\Post;
 
 class PostsController extends Controller
 {
-    private $countTake = 4;
+
 
     public function actionIndex()
     {
+        $allCount = isset($_GET['category_id']) ? Post::where('category_id', $_GET['category_id'])->count() : Post::count();
+
         $categories = Category::get();
-        $currentPage = isset($_GET['page']) ?: 1;
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
         $posts = Post::skip($this->getSkip($currentPage))->take($this->countTake);
         if (isset($_GET['category_id'])) {
             $posts->where('category_id', $_GET['category_id']);
         }
         $posts = $posts->orderBy('created_at', 'desc')->get();
-        $this->render('index', compact('categories', 'posts'));
+        $pages = $this->pages_array($allCount);
+        $this->render('index', compact('categories', 'posts', 'pages'));
     }
 
     private function getSkip($current)

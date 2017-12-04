@@ -19,14 +19,13 @@ class Router
     {
         if (!empty($_SERVER['REQUEST_URI'])) {
             $uri =  trim($_SERVER['REQUEST_URI'], '/');
-            if ($uri == '/') {
+            $str=strpos($uri, "?");
+            if ($str === false) {
                 return $uri;
-            } else {
-                //return $uri;
-                return substr($uri,0, strpos($uri,'?'));
             }
-        }
+            return substr($uri, 0, $str);
 
+        }
         return false;
     }
 

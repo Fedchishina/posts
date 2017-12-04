@@ -22,14 +22,14 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
-                {% if session.user_id is empty %}
-                <li>{{session.user_name}}</li>
+                {% if _session.user_id is empty %}
+                <li>{{_session.user_name}}</li>
                 <li><a href="/login">Авторизация</a></li>
                 <li><a href="/register">Регистрация</a></li>
                 {% else %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ session.user_name }}
+                        {{ _session.user_name }}
                         <span class="caret"></span>
                     </a>
 
@@ -52,5 +52,6 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+    <script src="https://use.fontawesome.com/1472eb6afe.js"></script>
     <script src="/js/scripts.js"></script>
 </body>

@@ -12,6 +12,7 @@
                                 <label for="category-list" class="col-md-4 control-label">Категория поста</label>
                                 <div class="col-md-6">
                                     <select class="selectpicker form-control" id="category-list" name="category_id" required>
+                                        <option value="" selected disabled="disabled">выберите категорию поста</option>
                                         {% for category in categories %}
                                             <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}
