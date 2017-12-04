@@ -22,6 +22,7 @@ class Router
             if ($uri == '/') {
                 return $uri;
             } else {
+                return $uri;
                 return substr($uri,0, strpos($uri,'?'));
             }
         }

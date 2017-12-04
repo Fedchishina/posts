@@ -15,7 +15,7 @@ class PostsController extends Controller
         if (isset($_GET['category_id'])) {
             $posts->where('category_id', $_GET['category_id']);
         }
-        $posts = $posts->get();
+        $posts = $posts->orderBy('created_at', 'desc')->get();
         $this->render('index', compact('categories', 'posts'));
     }
 
@@ -24,4 +24,31 @@ class PostsController extends Controller
         return ($current - 1) * $this->countTake;
     }
 
+    public function actionAdd()
+    {
+        if (isset($_SESSION['auth'])) {
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                $categories = Category::get();
+                $this->render('pages/posts/add', compact('categories'));
+            } else {
+                $validateErrors = Post::validate($_POST);
+                if (count($validateErrors) == 0){
+                    Post::create([
+                        'name' => $_POST['name'],
+                        'description' => $_POST['description'],
+                        'user_id' => $_SESSION['user_id'],
+                        'content' => $_POST['content'],
+                        'category_id' => $_POST['category_id'],
+                    ]);
+                    $message = 'Пост успешно добавлен';
+                    header("Location: /?message=" . $message);
+                } else {
+                    $this->render('pages/posts/add', ['errors' => $validateErrors, 'inputs' => $_POST]);
+                }
+            }
+        } else {
+            $this->render('pages/login');
+        }
+
+    }
 }

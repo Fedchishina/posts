@@ -24,6 +24,7 @@ use App\Controllers\Controller;
 $loader = new Twig_Loader_Filesystem(ROOT . '/resources/views');
 $twig = new Twig_Environment($loader);
 $twig->addGlobal('session', $_SESSION);
+$twig->addGlobal('getParams', $_GET);
 Controller::initTwig($twig);
 
 /**
