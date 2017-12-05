@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) unsigned NOT NULL COMMENT 'первичный ключ',
-  `name` varchar(255) NOT NULL COMMENT 'название категории',
+  `name` varchar(80) NOT NULL COMMENT 'название категории',
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'дата создания',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'дата последнего изменения'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='категории постов';
@@ -49,8 +49,8 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL COMMENT 'первичный ключ',
-  `name` varchar(255) NOT NULL COMMENT 'название поста',
-  `description` varchar(255) NOT NULL COMMENT 'описание поста',
+  `name` varchar(80) NOT NULL COMMENT 'название поста',
+  `description` varchar(80) NOT NULL COMMENT 'описание поста',
   `content` text NOT NULL COMMENT 'контент поста',
   `category_id` int(11) unsigned NOT NULL COMMENT 'категория, к которой относится пост',
   `user_id` int(11) unsigned NOT NULL COMMENT 'пользователь, создавший пост',
@@ -108,9 +108,9 @@ INSERT INTO `posts_likes` (`id`, `post_id`, `user_id`, `created_at`, `updated_at
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL COMMENT 'первичный ключ ',
-  `name` varchar(255) NOT NULL COMMENT 'имя пользователя',
-  `password` varchar(255) NOT NULL COMMENT 'пароль пользователя',
-  `email` varchar(255) NOT NULL COMMENT 'email пользователя',
+  `name` varchar(80) NOT NULL COMMENT 'имя пользователя',
+  `password` varchar(80) NOT NULL COMMENT 'пароль пользователя',
+  `email` varchar(80) NOT NULL COMMENT 'email пользователя',
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'дата создания',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'дата последнего изменения'
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='пользователи сайта';

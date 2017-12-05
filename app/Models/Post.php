@@ -30,7 +30,8 @@ class Post extends Model
     //----------------  validation functions  -----------------------//
     public static function checkName($name)
     {
-        if(strlen($name) >= 2) {
+        $length = strlen($name);
+        if(($length > 2)&&($length<=80)) {
             return true;
         } else {
             return false;
@@ -39,7 +40,8 @@ class Post extends Model
 
     public static function checkDescription($description)
     {
-        if(strlen($description) >= 2) {
+        $length = strlen($description);
+        if(($length > 2)&&($length<=80)) {
             return true;
         } else {
             return false;
@@ -57,7 +59,8 @@ class Post extends Model
 
     public static function checkContent($content)
     {
-        if(strlen($content) >= 2) {
+        $length = strlen($content);
+        if(($length > 6) && ($length <= 80)) {
             return true;
         } else {
             return false;
@@ -76,13 +79,13 @@ class Post extends Model
     public static function validate($params) {
         $errors = [];
         if (!Post::checkName($params['name'])){
-            $errors['name'][] = 'имя должно содержать не меньше 2 символов';
+            $errors['name'][] = 'имя должно содержать не меньше 2 символов и не больше 80';
         }
         if (!Post::checkDescription($params['description'])){
-            $errors['description'][] = 'описание должно содержать не меньше 2 символов';
+            $errors['description'][] = 'описание должно содержать не меньше и не больше 80';
         }
         if (!Post::checkContent($params['content'])){
-            $errors['content'][] = 'контент должен содержать не меньше 6 символов';
+            $errors['content'][] = 'контент должен содержать не меньше 6 символов и не больше 80';
         }
         if (!Post::checkCategory($params['category_id'])){
             $errors['category_id'][] = 'категория поста не выбрана';

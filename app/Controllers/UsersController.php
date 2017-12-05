@@ -19,7 +19,8 @@ class UsersController extends Controller
                     $_SESSION['user_name'] = $user->name;
                     header("Location: /");
                 } else {
-                    $this->render('pages/login', ['errors' => ['password'=> 'неверный email или пароль'], 'inputs' => $_POST]);
+                    $validateErrors['password'][] = 'неверный email или пароль';
+                    $this->render('pages/login', ['errors' => $validateErrors, 'inputs' => $_POST]);
                 }
             } else {
                 $this->render('pages/login', ['errors' => $validateErrors, 'inputs' => $_POST]);

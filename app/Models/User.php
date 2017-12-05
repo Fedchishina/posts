@@ -16,7 +16,8 @@ class User extends Model
     //----------------  validation functions  -----------------------//
     public static function checkName($name)
     {
-        if(strlen($name) >= 2) {
+        $length = strlen($name);
+        if(($length > 2)&&( $length <= 80)) {
             return true;
         } else {
             return false;
@@ -61,7 +62,7 @@ class User extends Model
         }
         if($isCreate) {
             if (!User::checkName($params['name'])){
-                $errors['name'][] = 'имя должно содержать не меньше 2 символов';
+                $errors['name'][] = 'имя должно содержать не меньше 2 символов и не больше 80';
             }
             if (!User::checkUniqueEmail($params['email'])){
                 $errors['email'][] = 'данный email уже зарегистрирован в системе';
