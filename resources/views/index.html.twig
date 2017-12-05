@@ -1,7 +1,6 @@
 {% extends "layouts/main.html.twig" %}
 
 {% block content %}
-
     <div class="container">
         {% if _get.message is defined %}
             <div class="alert alert-success">
@@ -16,7 +15,7 @@
                             <div class="alert alert-success">
                                 {{ getParams.message }}
                             </div>
-                        {% endif  %}
+                        {% endif %}
                         <div class="form-group">
                             <form action="/" method="get">
                                 <label for="category-list">Фильтр по категории</label>
@@ -29,7 +28,6 @@
                                 <button class="btn btn-primary btn-large"><span><i class="fa fa-search"></i> поиск</span></button>
                                 <a href="/" class="btn btn-success btn-large"><span><i class="fa fa-window-restore"></i> сброс</span></a>
                             </form>
-
                         </div>
                         {% if _session.auth %}
                         <div class="form-group">

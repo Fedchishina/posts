@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostLike;
 
 class PostsController extends Controller
 {
@@ -56,5 +57,43 @@ class PostsController extends Controller
                 $this->render('pages/posts/index', compact('post'));
             }
         }
+    }
+
+    public function actionLike()
+    {
+        if ( !isset($_GET['post_id'])) {
+            echo json_encode([
+                'status' => false,
+                'error' => 'отсутствует идентификатор поста'
+            ]);
+        }
+
+        if ( !isset($_SESSION['user_id'])) {
+            echo json_encode([
+                'status' => false,
+                'error' => 'пользователь не авторизован'
+            ]);
+        }
+
+        $postLikes = PostLike::where('post_id', $_GET['post_id'])
+            ->where('user_id', $_SESSION['user_id'])
+            ->first();
+
+
+        if ($postLikes <> null) {
+            //dislike
+            $postLikes->delete();
+        } else {
+            //like
+            PostLike::create([
+                'user_id' => $_SESSION['user_id'],
+                'post_id' =>  $_GET['post_id']
+            ]);
+        }
+        $countLikes = PostLike::where('post_id', $_GET['post_id'])->count();
+        echo json_encode([
+                'status' => true,
+                'count_likes' => $countLikes
+            ]);
     }
 }

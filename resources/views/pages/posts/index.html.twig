@@ -13,8 +13,8 @@
                                 <p>{{ post.description }}</p>
                                 {{  post.content | raw }}
                                 <p>
-                                    <a class="btn {% if _session.user_id is empty %} disabled {% else %} btn-primary btn-large {% endif %}" href="#">
-                                        <span><i class="fa fa-heart-o"></i> нравится 1</span>
+                                    <a class="btn {% if _session.user_id is empty %} disabled {% else %} btn-primary btn-large {% endif %} btn-like" href="/posts/like" data-post="{{ post.id }}">
+                                        <i class="fa fa-heart-o"></i><span> нравится </span><span class="count-likes">{{ post.countLikes() }}</span>
                                     </a>
                                 </p>
                             </div>

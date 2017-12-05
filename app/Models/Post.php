@@ -88,4 +88,9 @@ class Post extends Model
         return $errors;
     }
     //-----------------------------------------------------------------------
+
+    public function countLikes()
+    {
+        return PostLike::where('post_id', $this->id)->count();
+    }
 }

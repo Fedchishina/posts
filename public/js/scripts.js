@@ -4,6 +4,21 @@ $( document ).ready(function() {
 
 $( function() {
     'use strict';
+    var $btnLike = $('.btn-like');
+    $btnLike.on('click', function (event) {
+        var $countLikes = $(this).find('.count-likes');
+        event.preventDefault();
+        var $this = $(this);
+        $.ajax({
+            url: $this.attr('href'),
+            data: {'post_id': $this.data('post')},
+            dataType: 'json'
+        }).success(function (data) {
+            $countLikes.html(data.count_likes);
+        }).fail(function (err) {
+            console.log(err);
+        });
+    });
 
     var $addForm = $('.add-form');
     var $bookTable = $('.book-table');
