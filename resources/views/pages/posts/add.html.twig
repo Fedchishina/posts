@@ -17,9 +17,9 @@
                                             <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}
                                     </select>
-                                    {% if errors['name'] is not empty %}
+                                    {% if errors['category_id'] is not empty %}
                                         <span class="help-block">
-                                            <strong>{{ errors['name'][0] }}</strong>
+                                            <strong>{{ errors['category_id'][0] }}</strong>
                                         </span>
                                     {% endif %}
                                 </div>
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="description" class="col-md-4 control-label">Краткое описание</label>
                                 <div class="col-md-6">
-                                    <textarea id="description" name="description" class="form-control" required></textarea>
+                                    <textarea id="description" name="description" class="form-control" required>{% if inputs['description'] is not empty %} {{inputs['description']}}{% endif %}</textarea>
                                     {% if errors['description'] is not empty %}
                                         <span class="help-block">
                                             <strong>{{ errors['description'][0] }}</strong>

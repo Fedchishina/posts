@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Виктория
- * Date: 03.12.2017
- * Time: 19:12
- */
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +15,10 @@ class Post extends Model
         'user_id'
     ];
 
+    /**
+     * getting user, who created post
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -30,8 +27,8 @@ class Post extends Model
     //----------------  validation functions  -----------------------//
     public static function checkName($name)
     {
-        $length = strlen($name);
-        if(($length > 2)&&($length<=80)) {
+        $length = strlen(trim($name));
+        if(($length >= 2)&&($length<=80)) {
             return true;
         } else {
             return false;
@@ -40,8 +37,8 @@ class Post extends Model
 
     public static function checkDescription($description)
     {
-        $length = strlen($description);
-        if(($length > 2)&&($length<=80)) {
+        $length = strlen(trim($description));
+        if(($length >= 2)&&( $length <= 80)) {
             return true;
         } else {
             return false;
@@ -59,7 +56,9 @@ class Post extends Model
 
     public static function checkContent($content)
     {
-        $length = strlen($content);
+
+        $length = strlen(trim($content));
+
         if(($length > 6) && ($length <= 80)) {
             return true;
         } else {
@@ -98,6 +97,9 @@ class Post extends Model
     }
     //-----------------------------------------------------------------------
 
+    /*
+     * getting count of likes by post
+     */
     public function countLikes()
     {
         return PostLike::where('post_id', $this->id)->count();

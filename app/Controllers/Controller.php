@@ -6,6 +6,8 @@ namespace App\Controllers;
 class Controller
 {
     private static $twig;
+
+    //count of elements (for pagination)
     protected $countTake = 4;
 
     public static function initTwig($twig)
@@ -18,6 +20,9 @@ class Controller
         echo self::$twig->render($template . ".html.twig", $params);
     }
 
+    /*
+     * getting array of num pages (for pagination)
+     */
     protected function pages_array($count)
     {
         $ar = [];
@@ -29,6 +34,9 @@ class Controller
         return $ar;
     }
 
+    /*
+     * get count skip of pages (for pagination)
+     */
     protected function getSkip($current)
     {
         return ($current - 1) * $this->countTake;

@@ -5,6 +5,10 @@ namespace App\Controllers;
 use App\Models\User;
 class UsersController extends Controller
 {
+    /**
+     * GET - viewing login form
+     * POST - login user
+     */
     public function actionLogin()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -28,6 +32,9 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * logout of user
+     */
     public function actionLogout()
     {
         unset($_SESSION['auth']);
@@ -36,6 +43,10 @@ class UsersController extends Controller
         header("Location: /");
     }
 
+    /**
+     * GET - viewing register form
+     * POST - register user
+     */
     public function actionRegister()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {

@@ -6,6 +6,9 @@ use App\Models\PostLike;
 
 class PostsController extends Controller
 {
+    /*
+     * GET - viewing main page with post list
+     */
     public function actionIndex()
     {
         $allCount = isset($_GET['category_id']) ? Post::where('category_id', $_GET['category_id'])->count() : Post::count();
@@ -21,6 +24,10 @@ class PostsController extends Controller
         $this->render('index', compact('categories', 'posts', 'pages'));
     }
 
+    /**
+     * GET - viewing page for adding of post
+     * POST - adding of post in DB
+     */
     public function actionAdd()
     {
         if (isset($_SESSION['auth'])) {
@@ -40,7 +47,8 @@ class PostsController extends Controller
                     $message = 'Пост успешно добавлен';
                     header("Location: /?message=" . $message);
                 } else {
-                    $this->render('pages/posts/add', ['errors' => $validateErrors, 'inputs' => $_POST]);
+                    $categories = Category::get();
+                    $this->render('pages/posts/add', ['errors' => $validateErrors, 'inputs' => $_POST, 'categories'=>$categories]);
                 }
             }
         } else {
@@ -49,6 +57,9 @@ class PostsController extends Controller
 
     }
 
+    /**
+     * GET - viewing page with detail info of post
+     */
     public function actionShow()
     {
         if(isset($_GET['post_id'])){
@@ -59,6 +70,9 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * GET - like/dislike of post
+     */
     public function actionLike()
     {
         if ( !isset($_GET['post_id'])) {
@@ -97,6 +111,9 @@ class PostsController extends Controller
             ]);
     }
 
+    /**
+     * GET - viewing page with statistic info of post (likes)
+     */
     public function actionStatistic()
     {
         if(isset($_GET['post_id'])) {

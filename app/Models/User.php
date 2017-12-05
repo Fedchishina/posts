@@ -16,8 +16,8 @@ class User extends Model
     //----------------  validation functions  -----------------------//
     public static function checkName($name)
     {
-        $length = strlen($name);
-        if(($length > 2)&&( $length <= 80)) {
+        $length = strlen(trim($name));
+        if(($length >= 2)&&( $length <= 80)) {
             return true;
         } else {
             return false;
@@ -45,7 +45,7 @@ class User extends Model
 
     public static function checkPassword($email)
     {
-        if(strlen($email) >= 6) {
+        if(strlen(trim($email)) >= 6) {
             return true;
         } else {
             return false;
