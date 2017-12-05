@@ -1,0 +1,41 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{ post.name }}</h3>
+            <p>{{ post.description }}</p>
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Имя пользователя, оценившего пост
+                    </th>
+                    <th>
+                        Дата лайка
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for postLike in postLikes %}
+                    <tr>
+                        <td>
+                            {{ postLike.user.name }}
+                        </td>
+                        <td>
+                            {{ postLike.created_at }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <p>Всего поставленных лайков: <b>{{ postLikes.count }}</b></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

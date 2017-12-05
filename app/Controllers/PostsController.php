@@ -96,4 +96,13 @@ class PostsController extends Controller
                 'count_likes' => $countLikes
             ]);
     }
+
+    public function actionStatistic()
+    {
+        if(isset($_GET['post_id'])) {
+            $post = Post::where('id', $_GET['post_id'])->first();
+            $postLikes = PostLike::where('post_id', $_GET['post_id'])->get();
+            $this->render('pages/posts/statistic', compact('postLikes','post'));
+        }
+    }
 }

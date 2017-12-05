@@ -9,6 +9,7 @@
                     <div class="panel-body">
                         <div class="col-md-12">
                             <div class="jumbotron">
+                                <small>{{ post.created_at }}</small>
                                 <h2>{{ post.name }}</h2>
                                 <p>{{ post.description }}</p>
                                 {{  post.content | raw }}
@@ -16,7 +17,11 @@
                                     <a class="btn {% if _session.user_id is empty %} disabled {% else %} btn-primary btn-large {% endif %} btn-like" href="/posts/like" data-post="{{ post.id }}">
                                         <i class="fa fa-heart-o"></i><span> нравится </span><span class="count-likes">{{ post.countLikes() }}</span>
                                     </a>
+                                    <a class="btn btn-primary btn-large" href="/posts/statistic?post_id={{ post.id }}">
+                                        <span><i class="fa fa-question-circle-o "></i> кто оценил пост?.. </span>
+                                    </a>
                                 </p>
+                                <small>Пост создал: {{ post.user.name }}</small>
                             </div>
                         </div>
                     </div>
