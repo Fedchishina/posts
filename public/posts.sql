@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 05 2017 г., 14:10
+-- Время создания: Дек 06 2017 г., 09:47
 -- Версия сервера: 5.7.13
 -- Версия PHP: 7.0.8
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) unsigned NOT NULL COMMENT 'первичный ключ',
-  `name` varchar(80) NOT NULL COMMENT 'название категории',
+  `name` varchar(240) NOT NULL COMMENT 'название категории',
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'дата создания',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'дата последнего изменения'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='категории постов';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='категории постов';
 
 --
 -- Дамп данных таблицы `categories`
@@ -39,7 +39,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'спорт', NULL, NULL),
-(2, 'кулинария', NULL, NULL);
+(2, 'кулинария', NULL, NULL),
+(3, 'туризм', NULL, NULL),
+(4, 'развлечения', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -49,35 +51,25 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL COMMENT 'первичный ключ',
-  `name` varchar(80) NOT NULL COMMENT 'название поста',
-  `description` varchar(80) NOT NULL COMMENT 'описание поста',
+  `name` varchar(240) NOT NULL COMMENT 'название поста',
+  `description` varchar(240) NOT NULL COMMENT 'описание поста',
   `content` text NOT NULL COMMENT 'контент поста',
   `category_id` int(11) unsigned NOT NULL COMMENT 'категория, к которой относится пост',
   `user_id` int(11) unsigned NOT NULL COMMENT 'пользователь, создавший пост',
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'дата создания',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'дата последнего изменения'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='посты';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='посты';
 
 --
 -- Дамп данных таблицы `posts`
 --
 
 INSERT INTO `posts` (`id`, `name`, `description`, `content`, `category_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'о спорте', 'ываываывсывмым', 'выывавыавыаыва', 1, 1, NULL, NULL),
-(2, 'кухня', 'кухня', 'кухня', 2, 2, NULL, NULL),
-(3, 'тестовый курс', 'cfdgdfg', '<p>dfgdfg</p>\r\n', 1, 1, '2017-12-04 14:00:38', '2017-12-04 14:00:38'),
-(4, 'тестовый курс', 'cfdgdfg', '<p>dfgdfg</p>\r\n', 1, 1, '2017-12-04 14:00:43', '2017-12-04 14:00:43'),
-(5, 'sdasd', 'asdad', '<p>asdasd</p>\r\n', 1, 1, '2017-12-04 14:05:24', '2017-12-04 14:05:24'),
-(6, 'sfdfs', 'sdfsdf', '<p>sdfsdf</p>\r\n', 1, 1, '2017-12-04 14:05:51', '2017-12-04 14:05:51'),
-(7, 'dfgdfg', 'dfgdfg', '<p>dfgdfg</p>\r\n', 1, 1, '2017-12-04 14:07:16', '2017-12-04 14:07:16'),
-(8, 'sdfsf', 'sdfsdf', '<p>sdfsdf</p>\r\n', 1, 1, '2017-12-04 14:10:04', '2017-12-04 14:10:04'),
-(9, 'sdfsdf', 'sdfsf', '<p>sdfsdf</p>\r\n', 1, 1, '2017-12-04 14:11:00', '2017-12-04 14:11:00'),
-(10, 'dfgdfg', 'dfgdg', '<p>dfgdfg</p>\r\n', 1, 1, '2017-12-04 14:13:26', '2017-12-04 14:13:26'),
-(11, 'ffffffffffffff', 'fffffffffffff', '<p>ffffffffffffff</p>\r\n', 1, 1, '2017-12-04 14:13:42', '2017-12-04 14:13:42'),
-(12, 'ddddddddd', 'dddddddd', '<p>dddddddd</p>\r\n', 1, 1, '2017-12-04 14:17:09', '2017-12-04 14:17:09'),
-(13, 'cbcvb', 'cvbcvbcv', '<p>bcvb</p>\r\n', 1, 1, '2017-12-04 14:21:09', '2017-12-04 14:21:09'),
-(14, 'sss', 'sss', '<p>sss</p>\r\n', 1, 1, '2017-12-04 14:28:39', '2017-12-04 14:28:39'),
-(15, 'gffghfgh', 'fghfhfgh', '<p><img alt="" src="http://minionomaniya.ru/wp-content/uploads/2016/01/%D0%9A%D0%B5%D0%B2%D0%B8%D0%BD.jpg" style="height:100px; width:133px" />Привет)))</p>\r\n', 1, 1, '2017-12-04 14:36:45', '2017-12-04 14:36:45');
+(16, ' Чемпионат мира по футболу 2018', ' 21-й чемпионат мира по футболу ФИФА, финальная часть которого пройдёт в России с 14 июня по 15 июля 2018 года', '<p>Россия в первый раз в своей истории станет страной-хозяйкой мирового чемпионата по футболу</p>\r\n', 1, 5, '2017-12-06 06:30:38', '2017-12-06 06:30:38'),
+(17, 'блюда на Новый год', 'список оригинальных блюд', '<ul>\r\n	<li>канапе с семгой</li>\r\n	<li>свекольный чизкейк с форелью</li>\r\n	<li>салат &quot;новогодние шишки&quot;</li>\r\n</ul>\r\n', 2, 5, '2017-12-06 06:37:09', '2017-12-06 06:37:09'),
+(18, 'правильное питание', 'формула успеха!', '<p>Для спортсменов</p>\r\n\r\n<p>2 г. белка на 1 кг веса</p>\r\n\r\n<p>1 г. жира на 1 кг веса</p>\r\n\r\n<p>4 г. белка на 1 кг веса</p>\r\n', 2, 5, '2017-12-06 06:39:37', '2017-12-06 06:39:37'),
+(19, '  Санкт-Петербург', 'лучший город на земле', '<p>Санкт-Петербург расположен на северо-западе Российской Федерации, на побережье Финского залива</p>\n', 3, 5, '2017-12-06 06:42:00', '2017-12-06 06:42:00'),
+(20, 'Москва', 'крупнейший мегаполис России', '<p><img alt="" src="https://www.tourprom.ru/site_media/images/upload/2016/8/30/resortimage/moskva-kremlj.jpg" style="height:200px; width:500px" /></p>\r\n', 3, 5, '2017-12-06 06:44:12', '2017-12-06 06:44:12');
 
 -- --------------------------------------------------------
 
@@ -91,14 +83,19 @@ CREATE TABLE IF NOT EXISTS `posts_likes` (
   `user_id` int(10) unsigned NOT NULL COMMENT 'ключ пользователя, поставившего лайк',
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'дата создания',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'дата последнего изменения'
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='лайки постов';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='лайки постов';
 
 --
 -- Дамп данных таблицы `posts_likes`
 --
 
 INSERT INTO `posts_likes` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(10, 13, 1, '2017-12-05 09:44:23', '2017-12-05 09:44:23');
+(10, 13, 1, '2017-12-05 09:44:23', '2017-12-05 09:44:23'),
+(13, 17, 5, '2017-12-06 06:37:16', '2017-12-06 06:37:16'),
+(14, 19, 5, '2017-12-06 06:42:37', '2017-12-06 06:42:37'),
+(15, 18, 5, '2017-12-06 06:46:31', '2017-12-06 06:46:31'),
+(16, 19, 6, '2017-12-06 06:47:03', '2017-12-06 06:47:03'),
+(17, 18, 6, '2017-12-06 06:47:06', '2017-12-06 06:47:06');
 
 -- --------------------------------------------------------
 
@@ -108,22 +105,20 @@ INSERT INTO `posts_likes` (`id`, `post_id`, `user_id`, `created_at`, `updated_at
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL COMMENT 'первичный ключ ',
-  `name` varchar(80) NOT NULL COMMENT 'имя пользователя',
-  `password` varchar(80) NOT NULL COMMENT 'пароль пользователя',
-  `email` varchar(80) NOT NULL COMMENT 'email пользователя',
+  `name` varchar(240) NOT NULL COMMENT 'имя пользователя',
+  `password` varchar(240) NOT NULL COMMENT 'пароль пользователя',
+  `email` varchar(240) NOT NULL COMMENT 'email пользователя',
   `created_at` timestamp NULL DEFAULT NULL COMMENT 'дата создания',
   `updated_at` timestamp NULL DEFAULT NULL COMMENT 'дата последнего изменения'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='пользователи сайта';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='пользователи сайта';
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `created_at`, `updated_at`) VALUES
-(1, 'user', 'e10adc3949ba59abbe56e057f20f883e', 'user@user.ru', '2017-12-03 12:31:32', '2017-12-03 12:31:32'),
-(2, ' 123', 'e10adc3949ba59abbe56e057f20f883e', 'user1@user.ru', '2017-12-03 13:04:02', '2017-12-03 13:04:02'),
-(3, 'user555', 'e10adc3949ba59abbe56e057f20f883e', 'user555@user.ru', '2017-12-03 13:05:01', '2017-12-03 13:05:01'),
-(4, '123ddd', 'e10adc3949ba59abbe56e057f20f883e', 'usedddr@user.ru', '2017-12-03 15:58:09', '2017-12-03 15:58:09');
+(5, 'Королев Сергей', 'e10adc3949ba59abbe56e057f20f883e', 'user@user.ru', '2017-12-06 06:28:41', '2017-12-06 06:28:41'),
+(6, ' Симонова Татьяна', 'e10adc3949ba59abbe56e057f20f883e', 'user123@user.ru', '2017-12-06 06:46:57', '2017-12-06 06:46:57');
 
 --
 -- Индексы сохранённых таблиц
@@ -166,22 +161,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ',AUTO_INCREMENT=3;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ',AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ',AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблицы `posts_likes`
 --
 ALTER TABLE `posts_likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ',AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ',AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ ',AUTO_INCREMENT=5;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'первичный ключ ',AUTO_INCREMENT=7;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --

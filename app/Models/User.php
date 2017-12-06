@@ -17,7 +17,7 @@ class User extends Model
     public static function checkName($name)
     {
         $length = strlen(trim($name));
-        if(($length >= 2)&&( $length <= 80)) {
+        if(($length >= 2)&&( $length <= 240)) {
             return true;
         } else {
             return false;
@@ -62,7 +62,7 @@ class User extends Model
         }
         if($isCreate) {
             if (!User::checkName($params['name'])){
-                $errors['name'][] = 'имя должно содержать не меньше 2 символов и не больше 80';
+                $errors['name'][] = 'имя должно содержать не меньше 2 символов и не больше 240. Сейчас введено ' . strlen($params['name']);
             }
             if (!User::checkUniqueEmail($params['email'])){
                 $errors['email'][] = 'данный email уже зарегистрирован в системе';
