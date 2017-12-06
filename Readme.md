@@ -1,4 +1,4 @@
-<h1 align="center">news feed</h1>
+<h1 align="center">Post feed</h1>
 
 ## Installation
 
@@ -9,7 +9,7 @@
 
 ## Authorization
 
-After authorizing on the site, 
+After authorizing on the site:
 - you can create posts on site
 - you can put likes to the posts
 
