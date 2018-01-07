@@ -12,8 +12,3 @@
 After authorizing on the site:
 - you can create posts on site
 - you can put likes to the posts
-
-## Demo project
-
-https://posts-feed.000webhostapp.com
-
